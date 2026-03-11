@@ -1,4 +1,3 @@
-import java.util.Random;
 
 public class Persona {
 
@@ -6,16 +5,16 @@ public class Persona {
 
     private String nombre = "";
     private int edad = 0;
-    private String dNI;
     private Sexo sexo = SEXO_DEFECTO;
     private double peso = 0.0;
     private double altura = 0.0;
 
+    private String dNI;
     private PesoIdeal pesoIdeal;
 
 
     public Persona() {
-        this.dNI = generarDNI();
+        this.dNI = GeneradorDni.generarDNI();
         this.sexo = SEXO_DEFECTO;
     }
 
@@ -23,19 +22,18 @@ public class Persona {
 
         this.nombre = nombre;
         this.edad = edad;
-        this.dNI = generarDNI();
+        this.dNI = GeneradorDni.generarDNI();
         comprobarSexo(sexoChar);
     }
 
     public Persona(String nombre, int edad, double peso,
-                   double altura, PesoIdeal pesoIdeal, char sexoChar) {
+                   double altura, char sexoChar) {
 
         this.nombre = nombre;
         this.edad = edad;
         this.peso = peso;
         this.altura = altura;
-        this.dNI = generarDNI();
-        this.pesoIdeal = pesoIdeal;
+        this.dNI = GeneradorDni.generarDNI();
         comprobarSexo(sexoChar);
 
     }
@@ -78,24 +76,6 @@ public class Persona {
         }
     }
 
-    private String generarDNI() {
-
-        Random dniRandom = new Random();
-
-        int numeroDNI = dniRandom.nextInt(90000000) + 10000000;
-        char letra = calcularLetra(numeroDNI);
-
-        return String.valueOf(numeroDNI) + letra;
-    }
-
-    private char calcularLetra(int numero) {
-
-        String letras = "TRWAGMYFPDXBNJZSQVHLCKE";
-        int resto = numero % 23;
-        return letras.charAt(resto);
-
-    }
-
     // Setters.
 
     public void setNombre(String nombre) {
@@ -114,7 +94,7 @@ public class Persona {
         this.peso = peso;
     }
 
-    public void setAltura(double Altura) {
+    public void setAltura(double altura) {
         this.altura = altura;
     }
 
